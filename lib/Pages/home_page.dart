@@ -42,111 +42,233 @@ class _HomePageState extends State<HomePage> {
         ),
         elevation: 0.0,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: SizedBox(
-              height: 70,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return CategoryTile(
-                    categoryName: categories[index].categoryName,
-                    image: categories[index].image,
-                  );
-                },
-                itemCount: categories.length,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: SizedBox(
+                height: 70,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return CategoryTile(
+                      categoryName: categories[index].categoryName,
+                      image: categories[index].image,
+                    );
+                  },
+                  itemCount: categories.length,
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text(
-                  "Breaking News!",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.black,
+            const SizedBox(
+              height: 25,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text(
+                    "Breaking News!",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(right: 10),
-                child: Text(
-                  "View all",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.blue,
+                Padding(
+                  padding: EdgeInsets.only(right: 10),
+                  child: Text(
+                    "View all",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.blue,
+                    ),
                   ),
-                ),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          CarouselSlider.builder(
-            itemCount: sliders.length,
-            itemBuilder: (context, index, realIndex) {
-              String? image = sliders[index].image;
-              String? name = sliders[index].name;
-              return buildImage(image!, index, name!);
-            },
-            options: CarouselOptions(
-              height: 250,
-              autoPlay: true,
-              enlargeCenterPage: true,
-              enlargeStrategy: CenterPageEnlargeStrategy.height,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  activeIndex = index;
-                });
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            CarouselSlider.builder(
+              itemCount: sliders.length,
+              itemBuilder: (context, index, realIndex) {
+                String? image = sliders[index].image;
+                String? name = sliders[index].name;
+                return buildImage(image!, index, name!);
               },
+              options: CarouselOptions(
+                height: 250,
+                autoPlay: true,
+                enlargeCenterPage: true,
+                enlargeStrategy: CenterPageEnlargeStrategy.height,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    activeIndex = index;
+                  });
+                },
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 30.0,
-          ),
-          Center(child: buildIndicator()),
-          const SizedBox(height: 20),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text(
-                  "Trending News!",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.black,
+            const SizedBox(
+              height: 30.0,
+            ),
+            Center(child: buildIndicator()),
+            const SizedBox(height: 20),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text(
+                    "Trending News!",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(right: 10),
+                  child: Text(
+                    "View all",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.blue,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Material(
+                elevation: 3.0,
+                borderRadius: BorderRadius.circular(10),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 5.0, vertical: 10.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          "assets/images/sports.jpg",
+                          fit: BoxFit.cover,
+                          height: 120,
+                          width: 120,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 1.7,
+                            child: const Text(
+                              "From wandered for got and few feels. Felt would coffined love.",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 17,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 1.7,
+                            child: const Text(
+                              "Chamber ghost my then sorrow thing replaced..",
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(right: 10),
-                child: Text(
-                  "View all",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.blue,
+            ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Material(
+                elevation: 3.0,
+                borderRadius: BorderRadius.circular(10),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 5.0, vertical: 10.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          "assets/images/sports.jpg",
+                          fit: BoxFit.cover,
+                          height: 120,
+                          width: 120,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 1.7,
+                            child: const Text(
+                              "From wandered for got and few feels. Felt would coffined love.",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 17,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width / 1.7,
+                            child: const Text(
+                              "Chamber ghost my then sorrow thing replaced..",
+                              style: TextStyle(
+                                color: Colors.black54,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-              )
-            ],
-          ),
-        ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
