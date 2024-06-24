@@ -199,8 +199,6 @@ class TrendingNews extends StatefulWidget {
 
 class _TrendingNewsState extends State<TrendingNews> {
   List<ArticleModel> articles = [];
-  final List<String> list = <String>['One', 'Two', 'Three', 'Four'];
-
   bool isLoading = true;
 
   @override
@@ -218,7 +216,6 @@ class _TrendingNewsState extends State<TrendingNews> {
 
   @override
   Widget build(BuildContext context) {
-    String dropdownValue = list.first;
     return Column(
       children: [
         const Row(
@@ -314,28 +311,6 @@ class _TrendingNewsState extends State<TrendingNews> {
                   )
                 : const Center(child: Text("No articles available")),
         const SizedBox(height: 10.0),
-        DropdownButton<String>(
-          value: dropdownValue,
-          icon: const Icon(Icons.arrow_downward),
-          elevation: 16,
-          style: const TextStyle(color: Colors.deepPurple),
-          underline: Container(
-            height: 2,
-            color: Colors.deepPurpleAccent,
-          ),
-          onChanged: (String? value) {
-            // This is called when the user selects an item.
-            setState(() {
-              dropdownValue = value!;
-            });
-          },
-          items: list.map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
-        ),
       ],
     );
   }
